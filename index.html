@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Clan Relik - Soutien Katia - Clash of Clans</title>
     <meta name="description" content="Site officiel du Clan Relik. Retrouvez tous les liens pour soutenir Katia sur YouTube et Facebook. Communauté Clash of Clans et JCCV.">
     <meta name="keywords" content="Clan Relik, Katia, Clash of Clans, JCCV, soutien, gaming, youtube katia, facebook katia">
@@ -10,19 +13,26 @@
     <meta property="og:description" content="Soutenez Katia et rejoignez la communauté du Clan Relik !">
     <meta property="og:image" content="logo JCCV.webp">
     <meta property="og:url" content="https://clan-relik.github.io/Clan-Relik/">
-    <meta charset="UTF-8">
-    <title>Clan Relik x Katia - Tempête de Cendres</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         body, html {
             margin: 0; padding: 0;
-            height: 100%; width: 100%;
+            min-height: 100%; width: 100%;
             font-family: 'Segoe UI', sans-serif;
             background-color: #000;
-            overflow: hidden; color: white;
+            color: white;
+            overflow-x: hidden; /* Empêche le défilement horizontal */
         }
 
-        .main-container { display: flex; height: 100vh; width: 100vw; }
+        /* Mode PC par défaut */
+        .main-container { 
+            display: flex; 
+            min-height: 100vh; 
+            width: 100vw; 
+            flex-direction: row;
+        }
 
         /* --- SECTION GAUCHE : LE CLAN --- */
         .left-side {
@@ -30,24 +40,20 @@
             background-image: url('fond.webp'); 
             background-size: cover; background-position: center;
             overflow: hidden;
+            min-height: 400px;
         }
 
-        /* --- CONTENEUR DE CENDRES MASSIF --- */
+        /* --- CENDRES --- */
         .ash-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 2;
         }
 
-        /* Style de base d'une cendre */
         .ash {
-            position: absolute;
-            top: -5vh;
-            background: #ffd700;
-            border-radius: 50%;
-            filter: blur(1px);
-            opacity: 0;
-            animation: fall linear infinite;
+            position: absolute; top: -5vh;
+            border-radius: 50%; filter: blur(1px);
+            opacity: 0; animation: fall linear infinite;
         }
 
         @keyframes fall {
@@ -60,7 +66,7 @@
         .clan-buttons-container {
             position: absolute; bottom: 30px;
             left: 50%; transform: translateX(-50%);
-            display: flex; gap: 20px; width: 100%; justify-content: center;
+            display: flex; gap: 15px; width: 90%; justify-content: center;
             z-index: 10;
         }
 
@@ -83,19 +89,17 @@
         .banner-katia {
             width: 100%; max-width: 380px;
             border-radius: 8px; border: 1px solid #ff7b00;
+            height: auto;
         }
 
         .social-grid {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 10px; width: 100%; max-width: 380px;
+            gap: 10px; width: 100%; max-width: 380px; margin-bottom: 20px;
         }
 
         .logo-jccv {
-            margin-top: auto; 
-            width: 350px; height: auto;
-            padding-bottom: 20px;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
+            width: 100%; max-width: 300px; height: auto;
+            margin-top: 20px;
             filter: drop-shadow(0 0 10px rgba(255, 123, 0, 0.5));
         }
 
@@ -104,9 +108,10 @@
             display: flex; align-items: center; justify-content: center;
             color: #fff; text-decoration: none; font-weight: bold;
             text-transform: uppercase; transition: 0.2s;
+            font-size: 12px;
         }
-        .btn-giant { padding: 15px 30px; border-radius: 10px; font-size: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
-        .btn-social { padding: 10px; border-radius: 6px; font-size: 10px; }
+        .btn-giant { padding: 12px 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+        .btn-social { padding: 8px; border-radius: 6px; }
         .btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
         .discord { background: #5865F2; }
@@ -117,7 +122,17 @@
         .tiktok { background: #000; border: 1px solid #fff; }
         .fb { background: #1877F2; }
 
-        i { margin-right: 8px; font-size: 1.2em; }
+        i { margin-right: 5px; }
+
+        /* --- ADAPTATION MOBILE ET TABLETTE --- */
+        @media (max-width: 850px) {
+            .main-container { flex-direction: column; height: auto; }
+            .left-side { height: 60vh; min-height: 350px; }
+            .right-side { border-left: none; border-top: 3px solid #ff7b00; padding-bottom: 40px; }
+            .clan-buttons-container { flex-direction: column; align-items: center; }
+            .btn-giant { width: 80%; }
+            body { overflow-y: auto; }
+        }
     </style>
 </head>
 <body>
@@ -126,7 +141,6 @@
         
         <div class="left-side">
             <div id="ash-box" class="ash-container"></div>
-
             <div class="clan-buttons-container">
                 <a class="btn btn-giant discord" href="https://discord.gg/vrSWuRSptN">
                     <i class="fab fa-discord"></i>Discord Clan
@@ -142,12 +156,12 @@
             <img src="banniere youtube.webp" class="banner-katia">
             <div class="gold-text follow-msg">Suivez Katia sur ces réseaux</div>
             <div class="social-grid">
-                <a class="btn btn-social insta" href="https://www.instagram.com/katwom3n/"><i class="fab fa-instagram"></i>Instagram</a>
+                <a class="btn btn-social insta" href="https://www.instagram.com/katwom3n/"><i class="fab fa-instagram"></i>Insta</a>
                 <a class="btn btn-social tiktok" href="https://vm.tiktok.com/ZM8X4xSgT/"><i class="fab fa-tiktok"></i>TikTok</a>
                 <a class="btn btn-social twitch" href="https://www.twitch.tv/jiraiclasherchezvous"><i class="fab fa-twitch"></i>Twitch</a>
-                <a class="btn btn-social fb" href="https://www.facebook.com/Jiraiclasherchezvous"><i class="fab fa-facebook-f"></i>Facebook</a>
+                <a class="btn btn-social fb" href="https://www.facebook.com/Jiraiclasherchezvous"><i class="fab fa-facebook-f"></i>FB</a>
                 <a class="btn btn-social yt" href="https://www.youtube.com/channel/UC6posKs3z9GKfuW0QV7_nsg"><i class="fab fa-youtube"></i>YouTube</a>
-                <a class="btn btn-social discord" href="https://discord.gg/vHtv7jyUys"><i class="fab fa-discord"></i>Discord Katia</a>
+                <a class="btn btn-social discord" href="https://discord.gg/vHtv7jyUys"><i class="fab fa-discord"></i>Discord</a>
             </div>
             <img src="logo JCCV.webp" class="logo-jccv">
         </div>
@@ -155,36 +169,20 @@
     </div>
 
     <script>
-        // Petit script pour créer 60 cendres sans surcharger le code HTML
         const ashBox = document.getElementById('ash-box');
         const colors = ['#ffd700', '#ffae00', '#ff8000', '#ff4500', '#ffdb58'];
-
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 50; i++) {
             const ash = document.createElement('div');
             ash.className = 'ash';
-            
-            // Taille aléatoire (entre 2 et 5px)
             const size = Math.random() * 3 + 2;
             ash.style.width = size + 'px';
             ash.style.height = size + 'px';
-            
-            // Position horizontale aléatoire (0 à 100%)
             ash.style.left = Math.random() * 100 + '%';
-            
-            // Vitesse aléatoire (entre 4 et 10 secondes)
             ash.style.animationDuration = (Math.random() * 6 + 4) + 's';
-            
-            // Délai aléatoire pour que ça ne tombe pas tout en même temps
             ash.style.animationDelay = (Math.random() * 8) + 's';
-            
-            // Couleur aléatoire piochée dans notre liste chaude
             ash.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
             ashBox.appendChild(ash);
         }
     </script>
-
 </body>
-
 </html>
-
