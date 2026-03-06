@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,17 +19,16 @@
     <style>
         body, html {
             margin: 0; padding: 0;
-            min-height: 100vh; width: 100%;
+            height: 100vh; width: 100%; /* Fixe à 100% de l'écran sur PC */
             font-family: 'Segoe UI', sans-serif;
             background-color: #000;
-            overflow-x: hidden; 
-            overflow-y: auto; /* Autorise le défilement si le contenu dépasse la hauteur */
+            overflow: hidden; /* Bloque totalement le défilement sur PC */
             color: white;
         }
 
         .main-container { 
             display: flex; 
-            min-height: 100vh; 
+            height: 100vh; 
             width: 100%; 
         }
 
@@ -37,7 +38,7 @@
             background-image: url('fond.webp'); 
             background-size: cover; 
             background-position: bottom center; /* Garde le texte RELIK visible en bas */
-            /* overflow: hidden a été supprimé ici, il posait problème sur mobile */
+            overflow: hidden; /* Empêche les cendres de dépasser en bas et de créer un faux scroll */
         }
 
         /* --- CONTENEUR DE CENDRES MASSIF --- */
@@ -264,5 +265,3 @@
 </body>
 
 </html>
-
-
