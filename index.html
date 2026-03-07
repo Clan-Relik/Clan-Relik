@@ -11,7 +11,7 @@
             height: 100%; width: 100%;
             font-family: 'Segoe UI', sans-serif;
             background-color: #000; color: white;
-            overflow: hidden; /* Empêche le scroll parasite sur PC/Tablette */
+            overflow-x: hidden;
         }
 
         .main-container { display: flex; height: 100vh; width: 100vw; }
@@ -19,11 +19,11 @@
         /* --- SECTION GAUCHE --- */
         .left-side {
             flex: 1.5; position: relative;
-            background: url('fond.webp') no-repeat center top; /* Calé sur le haut pour le perso */
+            background: url('fond.webp') no-repeat center top; 
             background-size: cover;
             display: flex; flex-direction: column;
             justify-content: flex-end;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
         }
 
         .ash-container {
@@ -51,7 +51,7 @@
             flex: 1; display: flex; flex-direction: column;
             align-items: center; background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
             padding: 15px; border-left: 3px solid #ff7b00;
-            justify-content: space-between;
+            justify-content: space-around;
         }
 
         .gold-text { color: #FFD700; font-weight: bold; text-transform: uppercase; text-align: center; font-size: 0.85em; }
@@ -83,13 +83,18 @@
         /* --- ADAPTATION MOBILE / TABLETTE --- */
         @media (max-width: 1024px) {
             
-            /* MODE PORTRAIT (Vertical) */
+            /* MODE PORTRAIT (Tablette & Portable Vertical) */
             @media (orientation: portrait) {
                 .main-container { flex-direction: column; height: auto; }
                 body { overflow-y: auto; }
-                .left-side { height: 60vh; min-height: 350px; }
+                .left-side { height: 60vh; min-height: 400px; } /* Augmenté pour la tablette */
                 .right-side { border-left: none; border-top: 3px solid #ff7b00; padding: 30px 10px; gap: 20px; }
-                .clan-buttons-container { margin-top: 10px; }
+                
+                /* Correction spécifique pour dégager le mot RELIK */
+                .clan-buttons-container { 
+                    margin-top: 30px; /* Espace forcé entre l'image et les boutons */
+                    padding-bottom: 10px;
+                }
                 .btn-giant { width: 47%; }
             }
 
@@ -102,10 +107,9 @@
                     position: absolute; bottom: 15px; width: 100%;
                     justify-content: space-between; padding: 0;
                 }
-                .btn-giant { width: 33%; font-size: 8px; border-radius: 0 8px 8px 0; }
+                .btn-giant { width: 32%; font-size: 8px; border-radius: 0 8px 8px 0; }
                 .btn-giant.relik { border-radius: 8px 0 0 8px; }
                 .banner-katia { max-width: 180px; }
-                .social-grid { gap: 4px; }
                 .logo-jccv { max-width: 100px; }
             }
         }
