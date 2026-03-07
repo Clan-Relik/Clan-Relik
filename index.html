@@ -14,20 +14,16 @@
             overflow-x: hidden;
         }
 
-        .main-container { 
-            display: flex; 
-            height: 100vh; 
-            width: 100vw; 
-        }
+        .main-container { display: flex; height: 100vh; width: 100vw; }
 
-        /* --- SECTION GAUCHE --- */
+        /* --- SECTION GAUCHE (PC & PORTRAIT) --- */
         .left-side {
             flex: 2; position: relative;
             background: url('fond.webp') no-repeat center center; 
             background-size: cover;
             display: flex; flex-direction: column;
             justify-content: flex-end;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
         }
 
         .ash-container {
@@ -77,7 +73,6 @@
             padding: 10px; border-radius: 6px;
         }
         .btn-giant { width: 42%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
         .discord { background: #5865F2; }
         .relik { background: #ff7b00; }
@@ -87,15 +82,38 @@
         .twitch { background: #9146FF; }
         .tiktok { background: #000; border: 1px solid #fff; }
 
-        /* --- ADAPTATION MOBILE ET TABLETTE VERTICALE --- */
-        @media (max-width: 850px) {
+        /* --- ADAPTATION MOBILE / TABLETTE --- */
+        @media (max-width: 950px) {
             .main-container { flex-direction: column; height: auto; }
-            .left-side { height: 60vh; min-height: 350px; }
+            .left-side { height: 75vh; min-height: 300px; }
             .right-side { border-left: none; border-top: 3px solid #ff7b00; height: auto; padding: 20px 10px; }
-            /* Ici on force les boutons côte à côte sur une seule ligne */
-            .clan-buttons-container { flex-direction: row; flex-wrap: nowrap; padding: 0 5px; }
-            .btn-giant { width: 48%; font-size: 9px; padding: 12px 5px; }
             body { overflow-y: auto; }
+
+            /* --- PORTRAIT : Boutons côte à côte en bas --- */
+            @media (orientation: portrait) {
+                .clan-buttons-container { flex-direction: row; padding: 0 10px; margin-bottom: 10px; }
+                .btn-giant { width: 48%; font-size: 9px; }
+            }
+
+            /* --- PAYSAGE : Boutons sur les côtés du mot RELIK --- */
+            @media (orientation: landscape) {
+                .left-side { height: 100vh; }
+                .clan-buttons-container {
+                    position: absolute;
+                    bottom: 10%; /* Aligné avec le bas de l'image (mot RELIK) */
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between; /* Un à gauche, un à droite */
+                    padding: 0;
+                    gap: 0;
+                }
+                .btn-giant { 
+                    width: 30%; /* Taille réduite pour ne pas toucher le centre */
+                    font-size: 8px; 
+                    border-radius: 0 10px 10px 0; /* Arrondi seulement d'un côté */
+                }
+                .btn-giant.relik { border-radius: 10px 0 0 10px; } /* Arrondi inverse pour l'autre */
+            }
         }
     </style>
 </head>
