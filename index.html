@@ -16,7 +16,7 @@
 
         .main-container { 
             display: flex; 
-            height: 100vh; /* Fixe la hauteur sur PC/Tablette */
+            height: 100vh; 
             width: 100vw; 
         }
 
@@ -27,7 +27,7 @@
             background-size: cover;
             display: flex; flex-direction: column;
             justify-content: flex-end;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
         }
 
         .ash-container {
@@ -48,7 +48,7 @@
         }
 
         .clan-buttons-container {
-            display: flex; gap: 15px; width: 100%; justify-content: center;
+            display: flex; gap: 10px; width: 100%; justify-content: center;
             z-index: 10; position: relative;
         }
 
@@ -56,28 +56,27 @@
         .right-side {
             flex: 1; display: flex; flex-direction: column;
             align-items: center; background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            padding: 15px; border-left: 3px solid #ff7b00;
-            justify-content: space-between; /* Aligne les éléments sans vide */
+            padding: 10px; border-left: 3px solid #ff7b00;
+            justify-content: space-around;
         }
 
-        .gold-text { color: #FFD700; font-weight: bold; text-transform: uppercase; text-align: center; }
-        .support-msg { font-size: 1em; margin: 5px 0; }
-        .banner-katia { width: 95%; max-width: 350px; border-radius: 8px; border: 1px solid #ff7b00; height: auto; }
+        .gold-text { color: #FFD700; font-weight: bold; text-transform: uppercase; text-align: center; font-size: 0.9em; }
+        .banner-katia { width: 90%; max-width: 320px; border-radius: 8px; border: 1px solid #ff7b00; height: auto; }
         
         .social-grid {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 8px; width: 100%; max-width: 380px;
+            gap: 6px; width: 95%; max-width: 350px;
         }
 
-        .logo-jccv { width: 85%; max-width: 250px; height: auto; filter: drop-shadow(0 0 10px rgba(255, 123, 0, 0.5)); }
+        .logo-jccv { width: 70%; max-width: 200px; height: auto; filter: drop-shadow(0 0 10px rgba(255, 123, 0, 0.5)); }
 
         .btn {
             display: flex; align-items: center; justify-content: center;
             color: #fff; text-decoration: none; font-weight: bold;
-            text-transform: uppercase; transition: 0.2s; font-size: 11px;
+            text-transform: uppercase; transition: 0.2s; font-size: 10px;
+            padding: 10px; border-radius: 6px;
         }
-        .btn-giant { padding: 12px 20px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); width: 40%; }
-        .btn-social { padding: 8px; border-radius: 6px; }
+        .btn-giant { width: 42%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
         .discord { background: #5865F2; }
@@ -88,17 +87,14 @@
         .twitch { background: #9146FF; }
         .tiktok { background: #000; border: 1px solid #fff; }
 
-        /* --- ADAPTATION MOBILE --- */
+        /* --- ADAPTATION MOBILE ET TABLETTE VERTICALE --- */
         @media (max-width: 850px) {
             .main-container { flex-direction: column; height: auto; }
-            .left-side { height: 65vh; min-height: 380px; justify-content: flex-start; }
-            .right-side { border-left: none; border-top: 3px solid #ff7b00; height: auto; gap: 15px; }
-            .clan-buttons-container { 
-                flex-direction: column; align-items: center; 
-                margin-top: 400px; /* Pousse les boutons SOUS le texte RELIK de l'image */
-                padding-bottom: 20px;
-            }
-            .btn-giant { width: 85%; }
+            .left-side { height: 60vh; min-height: 350px; }
+            .right-side { border-left: none; border-top: 3px solid #ff7b00; height: auto; padding: 20px 10px; }
+            /* Ici on force les boutons côte à côte sur une seule ligne */
+            .clan-buttons-container { flex-direction: row; flex-wrap: nowrap; padding: 0 5px; }
+            .btn-giant { width: 48%; font-size: 9px; padding: 12px 5px; }
             body { overflow-y: auto; }
         }
     </style>
@@ -113,7 +109,7 @@
             </div>
         </div>
         <div class="right-side">
-            <div class="gold-text support-msg">Relik soutient Katia</div>
+            <div class="gold-text">Relik soutient Katia</div>
             <img src="banniere youtube.webp" class="banner-katia">
             <div class="social-grid">
                 <a class="btn btn-social insta" href="https://www.instagram.com/katwom3n/"><i class="fab fa-instagram"></i>Instagram</a>
@@ -129,7 +125,7 @@
     <script>
         const ashBox = document.getElementById('ash-box');
         const colors = ['#ffd700', '#ffae00', '#ff8000', '#ff4500'];
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 35; i++) {
             const ash = document.createElement('div');
             ash.className = 'ash';
             const size = Math.random() * 3 + 2;
