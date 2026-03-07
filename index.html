@@ -11,15 +11,15 @@
             height: 100%; width: 100%;
             font-family: 'Segoe UI', sans-serif;
             background-color: #000; color: white;
-            overflow-x: hidden;
+            overflow: hidden; /* Empêche le scroll parasite sur PC/Tablette */
         }
 
         .main-container { display: flex; height: 100vh; width: 100vw; }
 
-        /* --- SECTION GAUCHE (PC & PORTRAIT) --- */
+        /* --- SECTION GAUCHE --- */
         .left-side {
-            flex: 2; position: relative;
-            background: url('fond.webp') no-repeat center center; 
+            flex: 1.5; position: relative;
+            background: url('fond.webp') no-repeat center top; /* Calé sur le haut pour le perso */
             background-size: cover;
             display: flex; flex-direction: column;
             justify-content: flex-end;
@@ -32,14 +32,12 @@
         }
 
         .ash {
-            position: absolute; top: -5vh;
-            border-radius: 50%; filter: blur(1px);
+            position: absolute; top: -5vh; border-radius: 50%; filter: blur(1px);
             opacity: 0; animation: fall linear infinite;
         }
 
         @keyframes fall {
             0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-            10% { opacity: 0.8; }
             100% { transform: translateY(110vh) translateX(50px) scale(0.5); opacity: 0; }
         }
 
@@ -52,27 +50,27 @@
         .right-side {
             flex: 1; display: flex; flex-direction: column;
             align-items: center; background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            padding: 10px; border-left: 3px solid #ff7b00;
-            justify-content: space-around;
+            padding: 15px; border-left: 3px solid #ff7b00;
+            justify-content: space-between;
         }
 
-        .gold-text { color: #FFD700; font-weight: bold; text-transform: uppercase; text-align: center; font-size: 0.9em; }
-        .banner-katia { width: 90%; max-width: 320px; border-radius: 8px; border: 1px solid #ff7b00; height: auto; }
+        .gold-text { color: #FFD700; font-weight: bold; text-transform: uppercase; text-align: center; font-size: 0.85em; }
+        .banner-katia { width: 85%; max-width: 300px; border-radius: 8px; border: 1px solid #ff7b00; height: auto; }
         
         .social-grid {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 6px; width: 95%; max-width: 350px;
+            gap: 8px; width: 90%; max-width: 320px;
         }
 
-        .logo-jccv { width: 70%; max-width: 200px; height: auto; filter: drop-shadow(0 0 10px rgba(255, 123, 0, 0.5)); }
+        .logo-jccv { width: 50%; max-width: 150px; height: auto; margin-bottom: 5px; }
 
         .btn {
             display: flex; align-items: center; justify-content: center;
             color: #fff; text-decoration: none; font-weight: bold;
-            text-transform: uppercase; transition: 0.2s; font-size: 10px;
-            padding: 10px; border-radius: 6px;
+            text-transform: uppercase; transition: 0.2s; font-size: 9px;
+            padding: 8px; border-radius: 6px;
         }
-        .btn-giant { width: 42%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn-giant { width: 44%; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-size: 10px; }
 
         .discord { background: #5865F2; }
         .relik { background: #ff7b00; }
@@ -83,36 +81,32 @@
         .tiktok { background: #000; border: 1px solid #fff; }
 
         /* --- ADAPTATION MOBILE / TABLETTE --- */
-        @media (max-width: 950px) {
-            .main-container { flex-direction: column; height: auto; }
-            .left-side { height: 75vh; min-height: 300px; }
-            .right-side { border-left: none; border-top: 3px solid #ff7b00; height: auto; padding: 20px 10px; }
-            body { overflow-y: auto; }
-
-            /* --- PORTRAIT : Boutons côte à côte en bas --- */
+        @media (max-width: 1024px) {
+            
+            /* MODE PORTRAIT (Vertical) */
             @media (orientation: portrait) {
-                .clan-buttons-container { flex-direction: row; padding: 0 10px; margin-bottom: 10px; }
-                .btn-giant { width: 48%; font-size: 9px; }
+                .main-container { flex-direction: column; height: auto; }
+                body { overflow-y: auto; }
+                .left-side { height: 60vh; min-height: 350px; }
+                .right-side { border-left: none; border-top: 3px solid #ff7b00; padding: 30px 10px; gap: 20px; }
+                .clan-buttons-container { margin-top: 10px; }
+                .btn-giant { width: 47%; }
             }
 
-            /* --- PAYSAGE : Boutons sur les côtés du mot RELIK --- */
+            /* MODE LANDSCAPE (Horizontal) */
             @media (orientation: landscape) {
-                .left-side { height: 100vh; }
+                .main-container { flex-direction: row; height: 100vh; }
+                .left-side { flex: 1.2; }
+                .right-side { flex: 1; padding: 5px; }
                 .clan-buttons-container {
-                    position: absolute;
-                    bottom: 10%; /* Aligné avec le bas de l'image (mot RELIK) */
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between; /* Un à gauche, un à droite */
-                    padding: 0;
-                    gap: 0;
+                    position: absolute; bottom: 15px; width: 100%;
+                    justify-content: space-between; padding: 0;
                 }
-                .btn-giant { 
-                    width: 30%; /* Taille réduite pour ne pas toucher le centre */
-                    font-size: 8px; 
-                    border-radius: 0 10px 10px 0; /* Arrondi seulement d'un côté */
-                }
-                .btn-giant.relik { border-radius: 10px 0 0 10px; } /* Arrondi inverse pour l'autre */
+                .btn-giant { width: 33%; font-size: 8px; border-radius: 0 8px 8px 0; }
+                .btn-giant.relik { border-radius: 8px 0 0 8px; }
+                .banner-katia { max-width: 180px; }
+                .social-grid { gap: 4px; }
+                .logo-jccv { max-width: 100px; }
             }
         }
     </style>
@@ -143,14 +137,14 @@
     <script>
         const ashBox = document.getElementById('ash-box');
         const colors = ['#ffd700', '#ffae00', '#ff8000', '#ff4500'];
-        for (let i = 0; i < 35; i++) {
+        for (let i = 0; i < 30; i++) {
             const ash = document.createElement('div');
             ash.className = 'ash';
-            const size = Math.random() * 3 + 2;
+            const size = Math.random() * 2 + 2;
             ash.style.width = size + 'px'; ash.style.height = size + 'px';
             ash.style.left = Math.random() * 100 + '%';
-            ash.style.animationDuration = (Math.random() * 6 + 4) + 's';
-            ash.style.animationDelay = (Math.random() * 8) + 's';
+            ash.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            ash.style.animationDelay = (Math.random() * 5) + 's';
             ash.style.background = colors[Math.floor(Math.random() * colors.length)];
             ashBox.appendChild(ash);
         }
